@@ -1,0 +1,70 @@
+#include <stdio.h>
+
+int main() {
+
+    int tablero[5][5];
+    int fila, columna;
+    int barcosRestantes = 3;
+
+    // Inicializar tablero con agua
+    for(int i = 0; i < 5; i++) {
+        for(int j = 0; j < 5; j++) {
+            tablero[i][j] = 0;
+        }
+    }
+
+    // Colocar barcos
+    tablero[1][2] = 1;
+    tablero[3][4] = 1;
+    tablero[0][0] = 1;
+
+    printf("--- BIENVENIDO A BATALLA NAVAL ---\n");
+
+    while(barcosRestantes > 0) {
+
+        printf("\nTablero actual:\n");
+
+        for(int i = 0; i < 5; i++) {
+            for(int j = 0; j < 5; j++) {
+
+                if(tablero[i][j] == 2)
+                    printf("O ");
+                else if(tablero[i][j] == 3)
+                    printf("X ");
+                else
+                    printf("~ ");
+            }
+            printf("\n");
+        }
+
+        printf("\nQuedan %d barcos.\n", barcosRestantes);
+
+        printf("Fila (0-4): ");
+        scanf("%d", &fila);
+
+        printf("Columna (0-4): ");
+        scanf("%d", &columna);
+
+        if(fila < 0 || fila > 4 || columna < 0 || columna > 4) {
+            printf("Coordenadas fuera de rango.\n");
+            continue;
+        }
+
+        if(tablero[fila][columna] == 1) {
+            printf("\n¡IMPACTO!\n");
+            tablero[fila][columna] = 3;
+            barcosRestantes--;
+        }
+        else if(tablero[fila][columna] == 0) {
+            printf("\nAgua...\n");
+            tablero[fila][columna] = 2;
+        }
+        else {
+            printf("\nYa disparaste aquí antes.\n");
+        }
+    }
+
+    printf("\n¡Felicidades! Hundiste todos los barcos.\n");
+
+    return 0;
+}
