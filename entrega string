@@ -1,0 +1,47 @@
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char nombre[20] = "Carlos";
+    printf("%s\n", nombre);
+
+    char nombre_input[20];
+    scanf("%s", nombre_input);
+    printf("%s\n", nombre_input);
+
+    while (getchar() != '\n');
+
+    fgets(nombre_input, sizeof(nombre_input), stdin);
+    printf("%s", nombre_input);
+
+    char jugadores[3][20];
+    strcpy(jugadores[0], "Ana");
+    strcpy(jugadores[1], "Luis");
+    strcpy(jugadores[2], "Carlos");
+
+    for(int i = 0; i < 3; i++) {
+        printf("%s\n", jugadores[i]);
+    }
+
+    char apellido[20] = "Perez";
+    char destino[40];
+
+    printf("%d\n", (int)strlen(nombre));
+
+    strcpy(destino, nombre);
+
+    strcat(destino, " ");
+    strcat(destino, apellido);
+    printf("%s\n", destino);
+
+    if(strcmp(nombre, "Carlos") == 0) {
+        printf("Son iguales\n");
+    }
+
+    char jugador_ejemplo[20];
+    printf("Nombre: ");
+    fgets(jugador_ejemplo, sizeof(jugador_ejemplo), stdin);
+    printf("Jugador: %s", jugador_ejemplo);
+
+    return 0;
+}
