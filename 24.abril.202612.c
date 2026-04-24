@@ -1,0 +1,59 @@
+#include <stdio.h>
+
+void capturar(int m[3][3]) {
+    printf("Introduce los valores de la matriz 3x3:\n");
+    for(int i = 0; i < 3; i++) {
+        for(int j = 0; j < 3; j++) {
+            printf("Fila %d, Columna %d: ", i + 1, j + 1);
+            scanf("%d", &m[i][j]);
+        }
+    }
+}
+
+void mostrar(int m[3][3]) {
+    printf("\nMatriz actual:\n");
+    for(int i = 0; i < 3; i++) {
+        for(int j = 0; j < 3; j++) {
+            printf("%d\t", m[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+void sumarDiagonal(int m[3][3]) {
+    int suma = 0;
+    for(int i = 0; i < 3; i++) {
+        suma += m[i][i];
+    }
+    printf("\nLa suma de la diagonal principal es: %d\n", suma);
+}
+
+int main() {
+    int matriz[3][3];
+    FILE *f;
+    capturar(matriz);
+    mostrar(matriz);
+    sumarDiagonal(matriz);
+
+
+    f = fopen("matriz.txt", "w");
+
+    if (f == NULL) {
+        printf("Error al abrir el archivo.\n");
+        return 1;
+    }
+
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
+
+            fprintf(f, "%d\t", matriz[i][j]);
+        }
+        fprintf(f, "\n");
+    }
+
+    fclose(f);
+    printf("\nMatriz guardada exitosamente en 'matriz.txt'\n");
+
+    return 0;
+}
+
